@@ -5,6 +5,8 @@
  */
 package javaapplication11;
 
+import java.util.Scanner;
+
 /**
  *
  * @author r2kar
@@ -15,9 +17,9 @@ public class JavaApplication11 {
     /**
      * @param args the command line arguments
      */
-    Seasons season;
+    static Seasons season;
     private boolean abc=true;
-    public enum Seasons{
+    public  enum Seasons{
         FALL,
         WINTER,
         SPRING,
@@ -46,10 +48,27 @@ public class JavaApplication11 {
                 break;
      }
     }
+    public  String toString(){
+        switch(season){
+        case FALL :
+            return "Fall";
+        case WINTER :
+            return "Winter";
+        case SPRING :
+            return "Spring";
+        case SUMMER :
+            return "Summer";
+        }
+       
+        return null;
+    }
     public static void main(String[] args) {
         // TODO code application logic here
         // try to get the input (myStr) from the user
-        String myStr= "SUMMER";
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter a season name : ");
+        String myStr= in.next();
+        System.out.println(isSeason(myStr));
         JavaApplication11 test1= new JavaApplication11(Seasons.valueOf(myStr));
         test1.seasonDescription();
         //test1.isSeason();
@@ -63,6 +82,22 @@ public class JavaApplication11 {
         }
        
         }
+    public static boolean isSeason(String myStr){
+        if(myStr == null || myStr.trim().isEmpty()){
+            throw new IllegalArgumentException("Invalid season name");
+        } else if (myStr.equalsIgnoreCase(season.FALL.toString())){
+            return true;
+        } else if (myStr.equalsIgnoreCase(season.SPRING.toString())){
+            return true;
+        } else if(myStr.equalsIgnoreCase(season.SUMMER.toString())){
+            return true;
+        } else if(myStr.equalsIgnoreCase(season.WINTER.toString())){
+            return true;
+        } else{
+            return false;
+        }
+    }
+    
     }
     
 
